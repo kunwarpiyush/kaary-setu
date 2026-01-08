@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= pageTitle %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Orange–White Theme -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#f97316',   // orange
+            base: '#ffffff',      // white
+            soft: '#f8fafc',      // bg
+            accent: '#64748b'     // slate
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-soft text-gray-800 min-h-screen">
+
+  <!-- NAVBAR -->
+  <%- include('partials/header') %>
+
+  <!-- PAGE HEADER -->
+  <section class="max-w-6xl mx-auto px-4 py-10">
+    <h1 class="text-3xl font-extrabold">
+      उपलब्ध <span class="text-primary">काम</span>
+    </h1>
+    <p class="text-gray-500 mt-2">
+      अपने पास का सही काम चुनें
+    </p>
+  </section>
+
+  <!-- SEARCH & FILTER -->
+  <section class="max-w-6xl mx-auto px-4">
+    <div class="bg-white rounded-3xl shadow-xl p-5 grid grid-cols-1 md:grid-cols-4 gap-4">
+
+      <input type="text"
+        placeholder="🔍 काम का नाम"
+        class="border rounded-2xl px-4 py-3 focus:outline-primary">
+
+      <input type="text"
+        placeholder="📍 शहर / इलाका"
+        class="border rounded-2xl px-4 py-3 focus:outline-primary">
+
+      <select class="border rounded-2xl px-4 py-3 text-gray-600">
+        <option>💰 सैलरी</option>
+        <option>₹300 – ₹500</option>
+        <option>₹500 – ₹800</option>
+        <option>₹800+</option>
+      </select>
+
+      <button
+        class="bg-primary text-white rounded-2xl font-semibold shadow hover:bg-orange-600">
+        Search
+      </button>
+
+    </div>
+  </section>
+
+  <!-- JOB LIST -->
+  <section class="max-w-6xl mx-auto px-4 mt-14">
+
+    <div class="space-y-6">
+
+      <!-- JOB CARD -->
+      <div class="bg-white rounded-3xl shadow-md p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+        <div>
+          <h3 class="text-lg font-bold">ड्राइवर चाहिए</h3>
+          <p class="text-gray-500 text-sm mt-1">
+            📍 Ahmedabad • 🕒 Full Time
+          </p>
+
+          <div class="flex gap-4 mt-3 text-sm">
+            <span class="bg-orange-100 text-primary px-3 py-1 rounded-full">
+              ₹800 / दिन
+            </span>
+            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+              तुरंत जॉइन
+            </span>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="border border-orange-300 text-primary px-5 py-2 rounded-xl hover:bg-orange-50">
+            Details
+          </button>
+          <button class="bg-primary text-white px-6 py-2 rounded-xl font-semibold hover:bg-orange-600">
+            Apply
+          </button>
+        </div>
+
+      </div>
+
+      <!-- JOB CARD -->
+      <div class="bg-white rounded-3xl shadow-md p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+        <div>
+          <h3 class="text-lg font-bold">होटल हेल्पर</h3>
+          <p class="text-gray-500 text-sm mt-1">
+            📍 Surat • 🕒 Day Shift
+          </p>
+
+          <div class="flex gap-4 mt-3 text-sm">
+            <span class="bg-orange-100 text-primary px-3 py-1 rounded-full">
+              ₹500 / दिन
+            </span>
+            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+              8 घंटे
+            </span>
+          </div>
+        </div>
+
+        <div class="flex gap-3">
+          <button class="border border-orange-300 text-primary px-5 py-2 rounded-xl hover:bg-orange-50">
+            Details
+          </button>
+          <button class="bg-primary text-white px-6 py-2 rounded-xl font-semibold hover:bg-orange-600">
+            Apply
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-20 bg-white border-t border-orange-100 py-10">
+    <div class="text-center">
+      <h3 class="text-primary font-extrabold text-lg">ROJGAR APP</h3>
+      <p class="text-gray-500 mt-2">भरोसेमंद • तेज़ • आसान</p>
+      <p class="text-xs text-gray-400 mt-3">© 2026 All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t shadow flex justify-around py-2 text-xs md:hidden">
+
+    <div class="flex flex-col items-center text-gray-400">
+      🏠<span>Home</span>
+    </div>
+
+    <div class="flex flex-col items-center text-primary font-semibold">
+      💼<span>Jobs</span>
+    </div>
+
+    <div class="flex flex-col items-center text-gray-400">
+      💬<span>Chat</span>
+    </div>
+
+    <div class="flex flex-col items-center text-gray-400">
+      👤<span>Profile</span>
+    </div>
+
+  </div>
+
+  <div class="h-20 md:hidden"></div>
+
+</body>
+</html>

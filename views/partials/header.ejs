@@ -1,0 +1,131 @@
+<header class="sticky top-0 z-50">
+  <nav class="bg-white/80 backdrop-blur-xl border-b border-orange-100 px-6 py-3 flex items-center shadow-sm">
+
+    <!-- BRAND -->
+    <div class="flex items-center gap-2 text-2xl font-extrabold tracking-wide">
+      <span class="text-orange-500">🔗</span>
+      <span class="text-orange-500">
+        कार्य<span class="text-gray-700">सेतु</span>
+      </span>
+    </div>
+
+    <!-- MENU -->
+    <ul class="ml-auto flex items-center gap-6 text-sm font-medium">
+
+      <%
+        const base = `group relative px-1 pb-1 text-gray-600
+        hover:text-orange-500 transition-colors duration-300`;
+
+        const activeText = `text-orange-600 font-semibold`;
+
+        const line = `absolute left-0 -bottom-1 h-[2.5px] w-full
+        bg-orange-500 rounded-full transform scale-x-0 origin-center
+        transition-transform duration-500 ease-in-out
+        group-hover:scale-x-100`;
+
+        const activeLine = `scale-x-100`;
+      %>
+
+      <!-- Home -->
+      <li>
+        <a href="/" class="<%= `${base} ${path === '/' ? activeText : ''}` %>">
+          <span data-i18n-key="home">🏠 Home</span>
+          <span class="<%= `${line} ${path === '/' ? activeLine : ''}` %>"></span>
+        </a>
+      </li>
+
+      <!-- About -->
+      <li>
+        <a href="/about" class="<%= `${base} ${path === '/about' ? activeText : ''}` %>">
+          <span data-i18n-key="about">ℹ️ About</span>
+          <span class="<%= `${line} ${path === '/about' ? activeLine : ''}` %>"></span>
+        </a>
+      </li>
+
+      <!-- Jobs -->
+      <li>
+        <a href="/jobs" class="<%= `${base} ${path === '/jobs' ? activeText : ''}` %>">
+          <span data-i18n-key="jobs">💼 Jobs</span>
+          <span class="<%= `${line} ${path === '/jobs' ? activeLine : ''}` %>"></span>
+        </a>
+      </li>
+
+      <!-- Post Job -->
+      <li>
+        <a href="/post-job" class="<%= `${base} ${path === '/post-job' ? activeText : ''}` %>">
+          <span data-i18n-key="postjob">➕ Kaam Do</span>
+          <span class="<%= `${line} ${path === '/post-job' ? activeLine : ''}` %>"></span>
+        </a>
+      </li>
+
+      <!-- Sign Up -->
+      <li>
+        <a href="/signup" class="<%= `${base} ${path === '/signup' ? activeText : ''}` %>">
+          <span data-i18n-key="signup">📝 Sign Up</span>
+          <span class="<%= `${line} ${path === '/signup' ? activeLine : ''}` %>"></span>
+        </a>
+      </li>
+
+      <!-- Login -->
+      <li>
+        <a href="/login" class="<%= `${base} ${path === '/login' ? activeText : ''}` %>">
+          <span data-i18n-key="login">🔐 Login</span>
+          <span class="<%= `${line} ${path === '/login' ? activeLine : ''}` %>"></span>
+        </a>
+      </li>
+
+      <!-- Language Toggle -->
+      <li>
+        <button
+          id="lang-toggle"
+          class="ml-2 bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">
+          HI
+        </button>
+      </li>
+
+    </ul>
+  </nav>
+
+  <!-- LANGUAGE SCRIPT -->
+  <script>
+    (function () {
+      const translations = {
+        en: {
+          home: '🏠 Home',
+          about: 'ℹ️ About',
+          jobs: '💼 Jobs',
+          postjob: '➕ Post Job',
+          signup: '📝 Sign Up',
+          login: '🔐 Login'
+        },
+        hi: {
+          home: '🏠 होम',
+          about: 'ℹ️ बारे में',
+          jobs: '💼 नौकरियाँ',
+          postjob: '➕ काम दें',
+          signup: '📝 साइन अप',
+          login: '🔐 लॉगिन'
+        }
+      };
+
+      const btn = document.getElementById('lang-toggle');
+
+      function apply(lang) {
+        Object.keys(translations[lang]).forEach(key => {
+          const el = document.querySelector('[data-i18n-key="' + key + '"]');
+          if (el) el.textContent = translations[lang][key];
+        });
+        btn.textContent = lang.toUpperCase();
+        localStorage.setItem('lang', lang);
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const current = localStorage.getItem('lang') || 'hi';
+        apply(current);
+        btn.addEventListener('click', () =>
+          apply(localStorage.getItem('lang') === 'en' ? 'hi' : 'en')
+        );
+      });
+    })();
+  </script>
+</header>
